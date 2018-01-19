@@ -1,8 +1,6 @@
 # Concrete iOS Recruit Challenge #
 
-<h3 align="center">
-  <img src="assets/Logo-animado-1.gif" alt="Gif Concrete" />
-</h3>
+![Gif](assets/Logo-animado-1.gif)
 
 ### Bem vindo
 
@@ -35,7 +33,7 @@ O unico pré requisito é o código seja feito em Swift, de preferência na vers
 
 Somos especialmente preocupados com qualidade e acreditamos bastante em testes automatizados, entendemos que não é um tópico dominado por todos e aceitamos desafios com todos os perfis e diferentes momentos de experiencia e conhecimento técnico. Porém para posições mais Seniors damos muito importância para a qualidade do código.
 
-*Gostariamos de fazer um agradecimento especial para todas as empresas que tem utilizado o nosso desafio para seus reespectivos processos de seleção. Obrigado pela confiança e reconhecimento! =)
+**Gostariamos** de fazer um agradecimento especial para todas as empresas que tem utilizado o nosso desafio para seus reespectivos processos de seleção. Obrigado pela confiança e reconhecimento! =)
 
 # Features ..
 
