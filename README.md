@@ -1,14 +1,14 @@
 # Concrete iOS Recruit Challenge #
-
+---
 ![Gif](assets/Logo-animado-1.gif)
 
-### Bem vindo
-
+## Bem vindo
+---
 Primeiramente, obrigado por participar do desafio iOS da Concrete. Estamos muito contentes por você estar se propondo a dar o primeiro passo para fazer parte de um time excepcional.
 
 
 ## Afinal, o que é esse desafio?
-
+---
 Você deverá criar uma app sobre filmes, usando a  [API](https://developers.themoviedb.org/3/getting-started/introduction) do [TheMovieDB](https://www.themoviedb.org/?language=en). Legal certo ? Para dar uma padronizada e ter um layout minimamente definido anexamos alguns assets que vão te ajudar a desenvolver esse app!
 
 -  [Icones do app](assets/appIcons)
@@ -36,7 +36,7 @@ Somos especialmente preocupados com qualidade e acreditamos bastante em testes a
 **Gostariamos** de fazer um agradecimento especial para todas as empresas que tem utilizado o nosso desafio para seus reespectivos processos de seleção. Obrigado pela confiança e reconhecimento! =)
 
 # Features ..
-
+---
 ### Precisa ter:
 
 - Tela de Splash
@@ -66,6 +66,7 @@ Somos especialmente preocupados com qualidade e acreditamos bastante em testes a
 
 
 # Exemplos e sugestões
+---
 
 Abaixo podemos ver algumas telas de exemplo de alguns desses fluxos. As mesmas são apenas sugestões, se sinta livre para modifica-las conforme vontade.
 
@@ -82,6 +83,7 @@ Fornecemos os assets, app icons, icones e paleta de cores para facilitar o proce
 
 
 ## **Processo de submissão** ###
+---
 
 O candidato deverão implementar a solução e enviar um pull request para este repositório.
 
