@@ -34,8 +34,6 @@ O único pré-requisito é que o código seja feito em Swift, de preferência na
 Somos especialmente preocupados com qualidade e acreditamos bastante em testes automatizados. Entretanto, sabemos que não é um tópico dominado por todos, por isso aceitamos desafios com todos os perfis e diferentes momentos de experiência e conhecimento técnico.
 Para posições mais Seniors, porém, damos muito importância para a qualidade do código.
 
-__Gostariamos__ de fazer um agradecimento especial para todas as empresas que tem utilizado o nosso desafio para seus reespectivos processos de seleção. Obrigado pela confiança e reconhecimento! =)
-
 
 # Features ..
 ---
