@@ -1,0 +1,6 @@
+framework module Pods_ios_recruit_challenge_ios_recruit_challengeUITests {
+  umbrella header "Pods-ios-recruit-challenge-ios-recruit-challengeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

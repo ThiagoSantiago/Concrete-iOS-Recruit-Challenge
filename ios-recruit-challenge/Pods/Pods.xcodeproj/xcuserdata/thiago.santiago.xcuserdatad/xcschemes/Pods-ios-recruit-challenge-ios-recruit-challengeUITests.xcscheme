@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "62DEB35F7BED3CF2DAD970994107E555"
-               BuildableName = "Pods_ios_recruit_challenge.framework"
-               BlueprintName = "Pods-ios-recruit-challenge"
+               BlueprintIdentifier = "AADA92727859B556538BF4D31BD13264"
+               BuildableName = "Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework"
+               BlueprintName = "Pods-ios-recruit-challenge-ios-recruit-challengeUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "62DEB35F7BED3CF2DAD970994107E555"
-            BuildableName = "Pods_ios_recruit_challenge.framework"
-            BlueprintName = "Pods-ios-recruit-challenge"
+            BlueprintIdentifier = "AADA92727859B556538BF4D31BD13264"
+            BuildableName = "Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework"
+            BlueprintName = "Pods-ios-recruit-challenge-ios-recruit-challengeUITests"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
