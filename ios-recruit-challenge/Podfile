@@ -1,0 +1,10 @@
+platform :ios, '9.0'
+
+target 'ios-recruit-challenge' do
+  use_frameworks!
+
+    pod 'Alamofire', '~> 4.0'
+    pod 'ObjectMapper', '~> 2.2'
+    pod 'AlamofireObjectMapper', '~> 4.0'
+
+end
