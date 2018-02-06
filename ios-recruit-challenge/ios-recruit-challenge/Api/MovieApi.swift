@@ -24,7 +24,7 @@ extension MovieApi {
         switch self {
             
         case .getPopularMovies():
-            return "movie/popular"
+            return "movie/popular?api_key=\(Constants.apiKey)&language=pt-BR&page=1"
         }
     }
     
