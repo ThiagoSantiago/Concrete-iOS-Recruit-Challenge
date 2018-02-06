@@ -381,6 +381,7 @@
 				9EAE450E2029595700769F4B /* movie_popular_ unauthorized.json in Resources */,
 				9EAE450520294BFB00769F4B /* movie_popular_success.json in Resources */,
 				9EAE450D2029595700769F4B /* movie_popular_not_found.json in Resources */,
+				9EAE450520294BFB00769F4B /* movie_popular_success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
