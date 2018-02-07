@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92FD9AC94DC3F0AA50529BA8495B0653"
+               BlueprintIdentifier = "62DEB35F7BED3CF2DAD970994107E555"
                BuildableName = "Pods_ios_recruit_challenge.framework"
                BlueprintName = "Pods-ios-recruit-challenge"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -34,7 +34,6 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
@@ -48,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92FD9AC94DC3F0AA50529BA8495B0653"
+            BlueprintIdentifier = "62DEB35F7BED3CF2DAD970994107E555"
             BuildableName = "Pods_ios_recruit_challenge.framework"
             BlueprintName = "Pods-ios-recruit-challenge"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -58,7 +57,6 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-
       buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""

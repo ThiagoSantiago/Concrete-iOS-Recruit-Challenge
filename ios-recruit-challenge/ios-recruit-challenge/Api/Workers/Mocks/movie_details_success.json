@@ -1,0 +1,84 @@
+{
+  "adult": false,
+  "backdrop_path": "/lkOZcsXcOLZYeJ2YxJd3vSldvU4.jpg",
+  "belongs_to_collection": {
+    "id": 295130,
+    "name": "Maze Runner",
+    "poster_path": "/beR71cbwXH0vySlTMPZo0GQ54Q9.jpg",
+    "backdrop_path": "/eQ8iwAvGfuNnPjBCKTIVp5PsFw.jpg"
+  },
+  "budget": 34000000,
+  "genres": [
+    {
+      "id": 28,
+      "name": "Ação"
+    },
+    {
+      "id": 9648,
+      "name": "Mistério"
+    },
+    {
+      "id": 878,
+      "name": "Ficção científica"
+    },
+    {
+      "id": 53,
+      "name": "Thriller"
+    }
+  ],
+  "homepage": "",
+  "id": 198663,
+  "imdb_id": "tt1790864",
+  "original_language": "en",
+  "original_title": "The Maze Runner",
+  "overview": "Num cenário pós-apocalíptico, uma comunidade de rapazes descobre que estão presos num labirinto misterioso. Juntos, terão de descobrir como escapar, resolver o enigma e revelar o arrepiante segredo acerca de quem os colocou ali e por que razão.",
+  "popularity": 382.104773,
+  "poster_path": "/3o6IwZbd1rZy8a6kPzAWYXKDHIL.jpg",
+  "production_companies": [
+    {
+      "name": "Ingenious Media",
+      "id": 290
+    },
+    {
+      "name": "Twentieth Century Fox Film Corporation",
+      "id": 306
+    },
+    {
+      "name": "Gotham Group",
+      "id": 3672
+    },
+    {
+      "name": "Dayday Films",
+      "id": 8569
+    },
+    {
+      "name": "Temple Hill Entertainment",
+      "id": 12292
+    },
+    {
+      "name": "TSG Entertainment",
+      "id": 22213
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "2014-09-10",
+  "revenue": 348300000,
+  "runtime": 113,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "Prepare-se para correr.",
+  "title": "Maze Runner: Correr ou Morrer",
+  "video": false,
+  "vote_average": 7,
+  "vote_count": 6725
+}
