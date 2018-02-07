@@ -49,7 +49,7 @@ class MovieWorkerTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Get popular movies expectation")
         
         stub(condition: isHost("api.themoviedb.org")) { _ in
-            guard let path = OHPathForFile("movie_popular_ unauthorized.json", type(of: self)) else {
+            guard let path = OHPathForFile("movie_popular_unauthorized.json", type(of: self)) else {
                 preconditionFailure("Could not find expected file in test bundle")
             }
             return OHHTTPStubsResponse(fileAtPath: path, statusCode: 401, headers: [:])
@@ -57,10 +57,7 @@ class MovieWorkerTests: XCTestCase {
         
         MovieWorker.getPopularMovies(success: { _ in
         }) { error in
-            
-            XCTAssertTrue(error is MovieApiError, "error instance is MovieApiError")
-            XCTAssertEqual((error as! MovieApiError).errorMessage, "Invalid API key: You must be granted a valid key.")
-            
+            XCTAssertEqual(error.errorMessage, "Invalid API key: You must be granted a valid key.")
             expectation.fulfill()
         }
         
@@ -79,9 +76,71 @@ class MovieWorkerTests: XCTestCase {
         
         MovieWorker.getPopularMovies(success: { _ in
         }) { error in
+            XCTAssertEqual(error.errorMessage, "The resource you requested could not be found.")
             
-            XCTAssertTrue(error is MovieApiError, "error instance is MovieApiError")
-            XCTAssertEqual((error as! MovieApiError).errorMessage, "The resource you requested could not be found.")
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetListOfGenreWithSuccess() {
+        let expectation = XCTestExpectation(description: "Get list of genre expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("genre_success.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: [:])
+        }
+        
+        MovieWorker.getGenreList(success: { result in
+            guard let genres = result.genres else { return }
+            guard let firstGenre = genres.first else { return }
+            
+            XCTAssertFalse(genres.isEmpty)
+            XCTAssertEqual(firstGenre.id, 28)
+            XCTAssertEqual(firstGenre.name, "Action")
+            
+            expectation.fulfill()
+        }) { _ in }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetListOfGenreWithUnauthorized() {
+        let expectation = XCTestExpectation(description: "Get list of genre expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("genre_unauthorized.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 401, headers: [:])
+        }
+        
+        MovieWorker.getGenreList(success: { result in
+        }) { error in
+            XCTAssertEqual(error.errorMessage, "Invalid API key: You must be granted a valid key.")
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetListOfGenreWithNotFound() {
+        let expectation = XCTestExpectation(description: "Get list of genre expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("genre_not_found.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 404, headers: [:])
+        }
+        
+        MovieWorker.getGenreList(success: { result in
+        }) { error in
+            XCTAssertEqual(error.errorMessage, "The resource you requested could not be found.")
             
             expectation.fulfill()
         }

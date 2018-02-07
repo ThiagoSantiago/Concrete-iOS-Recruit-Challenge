@@ -28,4 +28,21 @@ class MovieWorker {
             }
         }
     }
+    
+    typealias GetGenreListSuccess = (_ genreList: GenreList) -> Void
+    class func getGenreList(success: @escaping GetGenreListSuccess, failure: @escaping Failure) {
+        MovieApi.request( .getGenreList()) { (result: Result<GenreList>) in
+            switch result {
+            case .success(let genres):
+                success(genres)
+            case .failure(let error):
+                guard let apiError = error as? MovieApiError else {
+                    failure(MovieApiError.unknownResponse)
+                    return
+                }
+                
+                failure(apiError)
+            }
+        }
+    }
 }

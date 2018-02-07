@@ -9,9 +9,9 @@
 import Foundation
 
 enum MovieApiError: Error {
-    case badRequest(GenericResponseString?)
-    case notFound
-    case unauthorized
+    case badRequest
+    case notFound(GenericResponseString?)
+    case unauthorized(GenericResponseString?)
     case unknownResponse
     case invalidJson
     case noInternet
@@ -21,7 +21,12 @@ enum MovieApiError: Error {
         switch self {
         case .noInternet:
             return Constants.lostConnectionMessage
-        case .badRequest(let genericResponseString):
+        case .notFound(let genericResponseString):
+            guard let genericResponse = genericResponseString, let status = genericResponse.message else {
+                return Constants.defaultServerFailureError
+            }
+            return status
+        case .unauthorized(let genericResponseString):
             guard let genericResponse = genericResponseString, let status = genericResponse.message else {
                 return Constants.defaultServerFailureError
             }

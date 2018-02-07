@@ -13,6 +13,7 @@ import AlamofireObjectMapper
 
 enum MovieApi {
     case getPopularMovies()
+    case getGenreList()
 }
 
 extension MovieApi {
@@ -25,6 +26,8 @@ extension MovieApi {
             
         case .getPopularMovies():
             return "movie/popular?api_key=\(Constants.apiKey)&language=pt-BR&page=1"
+        case .getGenreList():
+            return "genre/movie/list?api_key=\(Constants.apiKey)&language=pt-BR"
         }
     }
     
@@ -79,40 +82,23 @@ extension MovieApi {
     }
     
     private static func handler<T: Mappable>(statusCode: Int, dataResponse: DataResponse<Any>) -> Result<T> {
+        let responseJson = dataResponse.result.value as? [String: Any]
         
         switch statusCode {
         case 200...299:
-            let responseJson = dataResponse.result.value as? [String: Any]
-            
             return parseJson(responseJson)
         case 400:
-            guard let errorArray = dataResponse.result.value as? [[String: Any]] else {
-                return Result.failure(MovieApiError.unknownResponse)
-            }
-            
-            var errors = ""
-            
-            for error in errorArray {
-                let errorMessage = error["mensagem"] as? String ?? ""
-                
-                errors.append("\(errorMessage); ")
-            }
-            
-            let genericResponse = GenericResponseString()
-            genericResponse.message = errors
-            
-            return Result.failure(MovieApiError.badRequest(genericResponse))
+            return Result.failure(MovieApiError.badRequest)
         case 401:
-            return Result.failure(MovieApiError.unauthorized)
+            return Result.failure(MovieApiError.unauthorized(parseErrorMessage(responseJson)))
         case 404:
-            return Result.failure(MovieApiError.notFound)
+            return Result.failure(MovieApiError.notFound(parseErrorMessage(responseJson)))
         default:
             return Result.failure(MovieApiError.unknownResponse)
         }
     }
     
     private static func parseJson<T: Mappable>(_ responseJson: [String: Any]?) -> Result<T> {
-        
         if let json = responseJson {
             guard let object = T(JSON: json) else {
                 return Result.failure(MovieApiError.invalidJson)
@@ -126,5 +112,18 @@ extension MovieApi {
             
             return Result.success(object)
         }
+    }
+    
+    private static func parseErrorMessage(_ responseJson: [String: Any]?) -> GenericResponseString {
+        let genericResponse = GenericResponseString()
+        
+        guard let response = responseJson else {
+            return genericResponse
+        }
+        
+        genericResponse.message = response["status_message"] as? String ?? ""
+        genericResponse.errorCode = response["status_code"] as? String ?? ""
+        
+        return genericResponse
     }
 }
