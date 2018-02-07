@@ -14,6 +14,7 @@ import AlamofireObjectMapper
 enum MovieApi {
     case getPopularMovies()
     case getGenreList()
+    case getMovieDetails(id: String)
 }
 
 extension MovieApi {
@@ -28,12 +29,13 @@ extension MovieApi {
             return "movie/popular?api_key=\(Constants.apiKey)&language=pt-BR&page=1"
         case .getGenreList():
             return "genre/movie/list?api_key=\(Constants.apiKey)&language=pt-BR"
+        case .getMovieDetails(let id):
+            return "movie/\(id)?api_key=\(Constants.apiKey)&language=pt-BR"
         }
     }
     
     var method: Alamofire.HTTPMethod {
         switch self {
-            
         default:
             return .get
         }

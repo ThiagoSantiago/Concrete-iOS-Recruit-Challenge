@@ -118,7 +118,7 @@ class MovieWorkerTests: XCTestCase {
             return OHHTTPStubsResponse(fileAtPath: path, statusCode: 401, headers: [:])
         }
         
-        MovieWorker.getGenreList(success: { result in
+        MovieWorker.getGenreList(success: { _ in
         }) { error in
             XCTAssertEqual(error.errorMessage, "Invalid API key: You must be granted a valid key.")
             
@@ -138,7 +138,68 @@ class MovieWorkerTests: XCTestCase {
             return OHHTTPStubsResponse(fileAtPath: path, statusCode: 404, headers: [:])
         }
         
-        MovieWorker.getGenreList(success: { result in
+        MovieWorker.getGenreList(success: { _ in
+        }) { error in
+            XCTAssertEqual(error.errorMessage, "The resource you requested could not be found.")
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetTheMovieDetailsWithSuccess() {
+        let expectation = XCTestExpectation(description: "Get movie details expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("movie_details_success.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: [:])
+        }
+        
+        MovieWorker.getMovieDetails(movieId: "198663", success: { movie in
+            XCTAssertEqual(movie.id, 198663)
+            XCTAssertEqual( movie.title, "Maze Runner: Correr ou Morrer")
+            XCTAssertEqual(movie.overview, "Num cenário pós-apocalíptico, uma comunidade de rapazes descobre que estão presos num labirinto misterioso. Juntos, terão de descobrir como escapar, resolver o enigma e revelar o arrepiante segredo acerca de quem os colocou ali e por que razão.")
+            
+            expectation.fulfill()
+        }) { _ in }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetTheMovieDetailsWithUnauthorized() {
+        let expectation = XCTestExpectation(description: "Get movie details expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("movie_details_unauthorized.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 401, headers: [:])
+        }
+        
+        MovieWorker.getMovieDetails(movieId: "198663", success: { _ in
+        }) { error in
+            XCTAssertEqual(error.errorMessage, "Invalid API key: You must be granted a valid key.")
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testShouldGetTheMovieDetailsNotFound() {
+        let expectation = XCTestExpectation(description: "Get movie details expectation")
+        
+        stub(condition: isHost("api.themoviedb.org")) { _ in
+            guard let path = OHPathForFile("movie_details_not_found.json", type(of: self)) else {
+                preconditionFailure("Could not find expected file in test bundle")
+            }
+            return OHHTTPStubsResponse(fileAtPath: path, statusCode: 401, headers: [:])
+        }
+        
+        MovieWorker.getMovieDetails(movieId: "198663", success: { _ in
         }) { error in
             XCTAssertEqual(error.errorMessage, "The resource you requested could not be found.")
             

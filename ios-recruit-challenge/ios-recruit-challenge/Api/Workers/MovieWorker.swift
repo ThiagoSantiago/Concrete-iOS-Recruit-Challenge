@@ -45,4 +45,21 @@ class MovieWorker {
             }
         }
     }
+    
+    typealias GetMovieDetailsSuccess = (_ movieDetails: MovieDetails) -> Void
+    class func getMovieDetails(movieId: String, success: @escaping GetMovieDetailsSuccess, failure: @escaping Failure) {
+        MovieApi.request( .getMovieDetails(id: movieId)) { (result: Result<MovieDetails>) in
+            switch result {
+            case .success(let movieDetails):
+                success(movieDetails)
+            case .failure(let error):
+                guard let apiError = error as? MovieApiError else {
+                    failure(MovieApiError.unknownResponse)
+                    return
+                }
+                
+                failure(apiError)
+            }
+        }
+    }
 }
