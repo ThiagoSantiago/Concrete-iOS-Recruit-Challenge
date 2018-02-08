@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		0B02B696D38F709BBF606BEA /* Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AACF8794D06070493731069 /* Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework */; };
 		7B96CAAB0B607F1226F7D379 /* Pods_ios_recruit_challengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E62299D74774821536AD86 /* Pods_ios_recruit_challengeTests.framework */; };
+		9E6E983D202BCD6A0042B92D /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E983C202BCD6A0042B92D /* MoviesViewController.swift */; };
+		9E6E983F202BCD870042B92D /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E983E202BCD870042B92D /* FavoriteViewController.swift */; };
+		9E6E9841202BD7680042B92D /* MovieHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E9840202BD7680042B92D /* MovieHelper.swift */; };
 		9EAE44C220290E4A00769F4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE44C120290E4A00769F4B /* AppDelegate.swift */; };
-		9EAE44C420290E4A00769F4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE44C320290E4A00769F4B /* ViewController.swift */; };
 		9EAE44C720290E4A00769F4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE44C520290E4A00769F4B /* Main.storyboard */; };
 		9EAE44C920290E4A00769F4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE44C820290E4A00769F4B /* Assets.xcassets */; };
 		9EAE44CC20290E4A00769F4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE44CA20290E4A00769F4B /* LaunchScreen.storyboard */; };
@@ -63,9 +65,11 @@
 		7B5A8AEB2A0DCA5FCE356061 /* Pods-ios-recruit-challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-recruit-challenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-recruit-challenge/Pods-ios-recruit-challenge.debug.xcconfig"; sourceTree = "<group>"; };
 		9AACF8794D06070493731069 /* Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_recruit_challenge_ios_recruit_challengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD2CBC0D85D5E350244CE7F /* Pods-ios-recruit-challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-recruit-challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-recruit-challenge/Pods-ios-recruit-challenge.release.xcconfig"; sourceTree = "<group>"; };
+		9E6E983C202BCD6A0042B92D /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		9E6E983E202BCD870042B92D /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		9E6E9840202BD7680042B92D /* MovieHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHelper.swift; sourceTree = "<group>"; };
 		9EAE44BE20290E4A00769F4B /* ios-recruit-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-recruit-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAE44C120290E4A00769F4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9EAE44C320290E4A00769F4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9EAE44C620290E4A00769F4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9EAE44C820290E4A00769F4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EAE44CB20290E4A00769F4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9E6E983B202BCD4E0042B92D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E6E983C202BCD6A0042B92D /* MoviesViewController.swift */,
+				9E6E983E202BCD870042B92D /* FavoriteViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		9EAE44B520290E4A00769F4B = {
 			isa = PBXGroup;
 			children = (
@@ -171,11 +184,11 @@
 				9EAE44EF20293C2000769F4B /* Api */,
 				9EAE44F220293D3900769F4B /* View */,
 				9EAE450620294E0800769F4B /* Model */,
-				9EAE44C320290E4A00769F4B /* ViewController.swift */,
 				9EAE44C120290E4A00769F4B /* AppDelegate.swift */,
 				9EAE44C820290E4A00769F4B /* Assets.xcassets */,
 				9EAE44CD20290E4A00769F4B /* Info.plist */,
 				9EAE44F620293E1300769F4B /* Utils.swift */,
+				9E6E9840202BD7680042B92D /* MovieHelper.swift */,
 			);
 			path = "ios-recruit-challenge";
 			sourceTree = "<group>";
@@ -212,6 +225,7 @@
 		9EAE44F220293D3900769F4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9E6E983B202BCD4E0042B92D /* ViewController */,
 				9EAE44F320293D5000769F4B /* Storyboard */,
 			);
 			path = View;
@@ -452,6 +466,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-recruit-challenge/Pods-ios-recruit-challenge-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/DRPLoadingSpinner/DRPLoadingSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
@@ -459,6 +474,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DRPLoadingSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
@@ -578,6 +594,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-recruit-challenge-ios-recruit-challengeUITests/Pods-ios-recruit-challenge-ios-recruit-challengeUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/DRPLoadingSpinner/DRPLoadingSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
@@ -585,6 +602,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DRPLoadingSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
@@ -601,17 +619,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EAE44F92029409100769F4B /* MovieApiError.swift in Sources */,
-				9EAE44C420290E4A00769F4B /* ViewController.swift in Sources */,
 				9EAE44F120293C6700769F4B /* MovieApi.swift in Sources */,
 				9EAE45122029CF4B00769F4B /* Genre.swift in Sources */,
 				9EAE45102029CF4300769F4B /* GenreList.swift in Sources */,
 				9EAE44C220290E4A00769F4B /* AppDelegate.swift in Sources */,
 				9EAE450A20294EF100769F4B /* MovieResult.swift in Sources */,
 				9EAE44F720293E1300769F4B /* Utils.swift in Sources */,
+				9E6E983D202BCD6A0042B92D /* MoviesViewController.swift in Sources */,
 				9EAE44FB2029426600769F4B /* GenericResponseString.swift in Sources */,
+				9E6E983F202BCD870042B92D /* FavoriteViewController.swift in Sources */,
 				9EAE450820294E3D00769F4B /* Movie.swift in Sources */,
 				9EAE44FE202946C500769F4B /* MovieWorker.swift in Sources */,
 				9EAE4554202A850300769F4B /* MovieDetails.swift in Sources */,
+				9E6E9841202BD7680042B92D /* MovieHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
