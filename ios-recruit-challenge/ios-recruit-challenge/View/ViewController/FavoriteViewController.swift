@@ -15,4 +15,8 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         MovieHelper.configLoadingSpinner(spinner)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.title = "Favoritos"
+    }
 }

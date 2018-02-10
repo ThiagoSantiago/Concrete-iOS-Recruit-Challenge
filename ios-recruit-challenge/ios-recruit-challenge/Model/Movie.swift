@@ -25,6 +25,7 @@ class Movie: Mappable {
     var overview: String?
     var releaseDate: String?
     
+    init() {}
     required init?(map: Map) {}
     
     func mapping(map: Map) {
