@@ -39,7 +39,9 @@ class MoviesViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? MovieDetailViewController, let item = sender as? Movie {
-//            controller.viewModel = DetailViewModel(target: controller, item: item)
+            let movieDetailViewModel: MovieDetailsViewModelType = MovieDetailsViewModel()
+            movieDetailViewModel.inputs.setMovieSelected(item)
+            controller.movieDetailsViewModel = movieDetailViewModel
         }
     }
 }

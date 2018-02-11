@@ -74,6 +74,11 @@ extension MovieApi {
         
         Alamofire.request("\(endpoint.baseUrl)\(endpoint.path)", method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers).responseJSON { (httpResponse: DataResponse<Any>) in
             
+            
+            print("response: \(httpResponse.response)")
+            print("response status code: \(httpResponse.response?.statusCode)")
+            print("response result value: \(httpResponse.result.value)")
+            
             guard let response = httpResponse.response else {
                 completion(Result.failure(MovieApiError.unknownResponse))
                 return

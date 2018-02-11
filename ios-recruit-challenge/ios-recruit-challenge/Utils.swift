@@ -13,6 +13,7 @@ public struct Color {
 }
 
 class Constants {
+    static let favoritesKey = "challengeFavoriteMovies"
     static let baseUrl = "https://api.themoviedb.org/3/"
     static let apiKey = "ba9ff4f446ab295f4c2afd0dd03166f7"
     static let imageBaseUrl = "https://image.tmdb.org/t/p/w500/"
