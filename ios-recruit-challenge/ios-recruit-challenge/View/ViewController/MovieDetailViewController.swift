@@ -18,6 +18,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var movieOverview: UITextView!
     @IBOutlet weak var moviePoster: UIImageView!
+    @IBOutlet weak var favoriteImage: UIImageView!
     
     var movie: Movie?
     var movieDetailsViewModel: MovieDetailsViewModelType?
@@ -27,6 +28,7 @@ class MovieDetailViewController: UIViewController {
         
         viewModel.inputs.setMovieDetailsDelegate(self)
         viewModel.inputs.fetchGenreList()
+        viewModel.inputs.verifyIfIsFavorite()
         
         movieTitle.text = viewModel.outputs.movieTitle
         movieReleaseDate.text = viewModel.outputs.dateConverted
@@ -38,11 +40,25 @@ class MovieDetailViewController: UIViewController {
         } else {
             print("could not open url, it was nil")
         }
+        
+        favoriteImage.isHighlighted = viewModel.outputs.isFavorite
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         movieOverview.setContentOffset(CGPoint(x: 0, y: 7), animated: false)
+    }
+    
+    @IBAction func favoriteMovieSelected() {
+        guard let viewModel = movieDetailsViewModel else { return }
+        
+        if favoriteImage.isHighlighted {
+            viewModel.inputs.unfavoriteMovie()
+            favoriteImage.isHighlighted = false
+        } else {
+            viewModel.inputs.favoriteMovie()
+            favoriteImage.isHighlighted = true
+        }
     }
 }
 

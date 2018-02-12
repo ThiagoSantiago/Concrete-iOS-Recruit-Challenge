@@ -11,7 +11,9 @@ import AlamofireImage
 
 protocol MovieDetailsViewModelInputs {
     func fetchGenreList()
-    func favoriteMovie(id: Int)
+    func favoriteMovie()
+    func unfavoriteMovie()
+    func verifyIfIsFavorite()
     func setMovieSelected(_ movie: Movie)
     func setMovieDetailsDelegate(_ detailsDelegate: MovieDetailsDelegate)
 }
@@ -22,6 +24,7 @@ protocol MovieDetailsViewModelOutputs {
     var dateConverted: String { get }
     var movieOverview: String { get }
     var posterPath: String { get }
+    var isFavorite: Bool { get }
 }
 
 protocol MovieDetailsViewModelType {
@@ -39,9 +42,10 @@ class MovieDetailsViewModel: MovieDetailsViewModelType, MovieDetailsViewModelInp
     var movieTitle: String = ""
     var movieOverview: String = ""
     var posterPath: String = ""
+    var isFavorite: Bool = false
     var movieSelected: Movie = Movie()
     var delegate: MovieDetailsDelegate?
-    var defaults = UserDefaults.standard
+    var favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
     
     func fetchGenreList() {
         if genres.isEmpty {
@@ -57,13 +61,27 @@ class MovieDetailsViewModel: MovieDetailsViewModelType, MovieDetailsViewModelInp
         }
     }
     
-    func favoriteMovie(id: Int) {
-        var favoriteMovies: [Int] = defaults.array(forKey: Constants.favoritesKey) as? [Int] ?? []
-        
+    func verifyIfIsFavorite() {
+        let id = movieSelected.id ?? 0
+        for favoriteId in favoriteMovies where favoriteId == id {
+            isFavorite = true
+        }
+    }
+    
+    func favoriteMovie() {
+        let id = movieSelected.id ?? 0
         if !favoriteMovies.contains(id) {
             favoriteMovies.append(id)
             UserDefaults.standard.set(favoriteMovies, forKey: Constants.favoritesKey)
         }
+    }
+    
+    func unfavoriteMovie() {
+        let id = movieSelected.id ?? 0
+        for (index, favoriteId) in favoriteMovies.enumerated() where favoriteId == id {
+            favoriteMovies.remove(at: index)
+        }
+        UserDefaults.standard.set(favoriteMovies, forKey: Constants.favoritesKey)
     }
     
     func getGenreString(ids: [Int]) {
