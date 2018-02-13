@@ -284,7 +284,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jY9-Sq-ASs" userLabel="favoriteBaseView">
-                                                            <rect key="frame" x="114" y="0.0" width="40" height="40"/>
+                                                            <rect key="frame" x="120" y="0.0" width="40" height="40"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite_empty_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ahU-HR-nSz">
                                                                     <rect key="frame" x="7.5" y="7.5" width="25" height="25"/>
@@ -317,7 +317,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="5hM-Ob-Gq2" secondAttribute="trailing" constant="4" id="AiL-sy-Wj4"/>
                                                         <constraint firstItem="9JU-MY-Pgs" firstAttribute="top" secondItem="5hM-Ob-Gq2" secondAttribute="bottom" constant="10" id="E7L-ng-xMS"/>
                                                         <constraint firstItem="5hM-Ob-Gq2" firstAttribute="top" secondItem="LCj-RB-A9V" secondAttribute="top" constant="4" id="MSq-Xq-6Zb"/>
-                                                        <constraint firstAttribute="trailing" secondItem="jY9-Sq-ASs" secondAttribute="trailing" constant="6" id="gWf-Ll-SbM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jY9-Sq-ASs" secondAttribute="trailing" id="gWf-Ll-SbM"/>
                                                         <constraint firstAttribute="trailing" secondItem="9JU-MY-Pgs" secondAttribute="trailing" constant="10" id="lHd-Dh-0Vn"/>
                                                         <constraint firstAttribute="bottom" secondItem="9JU-MY-Pgs" secondAttribute="bottom" constant="10" id="q6w-Ej-0KC"/>
                                                         <constraint firstItem="5hM-Ob-Gq2" firstAttribute="leading" secondItem="LCj-RB-A9V" secondAttribute="leading" constant="4" id="qLa-xt-hgU"/>

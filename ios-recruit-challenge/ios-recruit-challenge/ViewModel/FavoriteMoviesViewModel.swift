@@ -45,6 +45,8 @@ class FavoriteMoviesViewModel: FavoriteMoviesViewModelType, FavoriteMoviesViewMo
         delegate?.startLoading()
         let favoritesIds = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
         
+        favoriteMovies = []
+        
         for favorieId in favoritesIds {
             if let favoriteMovie = getFavoriteMovie(movieId: favorieId, moviesList: movies) {
                 favoriteMovies.append(favoriteMovie)

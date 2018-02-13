@@ -36,21 +36,23 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     var movieSelected: Movie = Movie()
     var isFavorite: Bool = false
     var delegate: MoviesDelegate?
-    var favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
     
     func fetchPopularMovies() {
         delegate?.startLoading()
-        MovieWorker.getPopularMovies(success: { movies in
-            self.popularMovies = movies.results ?? []
-            self.delegate?.resultSuccess()
-            self.delegate?.finishLoading()
-        }) { error in
-            self.errorMessage = error.errorMessage
-            self.delegate?.hasError()
+        if popularMovies.isEmpty {
+            MovieWorker.getPopularMovies(success: { movies in
+                self.popularMovies = movies.results ?? []
+                self.delegate?.resultSuccess()
+                self.delegate?.finishLoading()
+            }) { error in
+                self.errorMessage = error.errorMessage
+                self.delegate?.hasError()
+            }
         }
     }
     
     func verifyIfIsFavorite(index: Int) {
+        let favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
         let id = popularMovies[index].id ?? 0
         for favoriteId in favoriteMovies {
             if favoriteId == id {
