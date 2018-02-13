@@ -13,8 +13,8 @@ class MovieWorker {
     typealias Failure = (_ error: MovieApiError) -> Void
     
     typealias GetPopularMoviesSuccess = (_ movies: MovieResult) -> Void
-    class func getPopularMovies(success: @escaping GetPopularMoviesSuccess, failure: @escaping Failure) {
-        MovieApi.request( .getPopularMovies()) { (result: Result<MovieResult>) in
+    class func getPopularMovies(page: Int, success: @escaping GetPopularMoviesSuccess, failure: @escaping Failure) {
+        MovieApi.request( .getPopularMovies(page: page)) { (result: Result<MovieResult>) in
             switch result {
             case .success(let movies):
                 success(movies)

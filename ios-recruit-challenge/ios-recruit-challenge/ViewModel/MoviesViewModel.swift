@@ -10,6 +10,7 @@ import Foundation
 
 protocol MoviesViewModelInputs {
     func fetchPopularMovies()
+    func fetchMorePopularMovies()
     func movieCellSelected(atIndex: Int)
     func setMoviesDelegate(_ moviesDelegate: MoviesDelegate)
 }
@@ -29,17 +30,32 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     internal var inputs: MoviesViewModelInputs { return self }
     internal var outputs: MoviesViewModelOutputs { return self }
     
-    var errorMessage: String = ""
-    var popularMovies: [Movie] = []
-    var movieSelected: Movie = Movie()
+    var moviesPage = 1
+    var errorMessage = ""
+    var movieSelected = Movie()
     var delegate: MoviesDelegate?
+    var popularMovies: [Movie] = []
     
     func fetchPopularMovies() {
+        moviesPage = 1
         delegate?.startLoading()
-        MovieWorker.getPopularMovies(success: { movies in
+        MovieWorker.getPopularMovies(page: moviesPage, success: { movies in
             self.popularMovies = movies.results ?? []
             self.delegate?.resultSuccess()
             self.delegate?.finishLoading()
+        }) { error in
+            self.errorMessage = error.errorMessage
+            self.delegate?.hasError()
+        }
+    }
+    
+    func fetchMorePopularMovies() {
+        moviesPage += moviesPage
+        delegate?.startLoadingMore()
+        MovieWorker.getPopularMovies(page: moviesPage, success: { movies in
+            self.popularMovies.append(contentsOf: movies.results ?? [])
+            self.delegate?.resultSuccess()
+            self.delegate?.finishLoadingMore()
         }) { error in
             self.errorMessage = error.errorMessage
             self.delegate?.hasError()

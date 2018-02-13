@@ -15,6 +15,8 @@ protocol MoviesDelegate {
     func startLoading()
     func finishLoading()
     func resultSuccess()
+    func startLoadingMore()
+    func finishLoadingMore()
 }
 
 class MoviesViewController: UIViewController {
@@ -23,11 +25,14 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var notFoundView: UIView!
     @IBOutlet weak var spinner: DRPLoadingSpinner!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadMoreView: UIView!
+    @IBOutlet weak var loadMoreSpinner: DRPLoadingSpinner!
     
     var viewModel: MoviesViewModelType = MoviesViewModel()
     
     override func viewDidLoad() {
         MovieHelper.configLoadingSpinner(spinner)
+        MovieHelper.configLoadingSpinner(loadMoreSpinner)
         
         viewModel.inputs.fetchPopularMovies()
         viewModel.inputs.setMoviesDelegate(self)
@@ -57,6 +62,14 @@ extension MoviesViewController: MoviesDelegate {
     
     func startLoading() {
         spinner.isHidden = false
+    }
+    
+    func startLoadingMore() {
+        loadMoreView.isHidden = false
+    }
+    
+    func finishLoadingMore() {
+        loadMoreView.isHidden = true
     }
     
     func finishLoading() {
@@ -98,5 +111,13 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.inputs.movieCellSelected(atIndex: indexPath.row)
         self.performSegue(withIdentifier: "showMovieDetailsSegue", sender: viewModel.outputs.movieSelected)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastItem = (viewModel.outputs.popularMovies.count)-1
+        
+        if indexPath.row == lastItem {
+            viewModel.inputs.fetchMorePopularMovies()
+        }
     }
 }
