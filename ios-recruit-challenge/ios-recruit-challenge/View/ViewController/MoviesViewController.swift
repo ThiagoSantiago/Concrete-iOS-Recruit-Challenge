@@ -15,6 +15,7 @@ protocol MoviesDelegate {
     func startLoading()
     func finishLoading()
     func resultSuccess()
+    func noResultsFound()
     func startLoadingMore()
     func finishLoadingMore()
 }
@@ -78,13 +79,21 @@ extension MoviesViewController: MoviesDelegate {
         spinner.isHidden = true
     }
     
+    func noResultsFound() {
+        errorView.isHidden = true
+        notFoundView.isHidden = false
+        collectionView.isHidden = true
+        
+        self.searchBar.resignFirstResponder()
+    }
+    
     func resultSuccess() {
         errorView.isHidden = true
         notFoundView.isHidden = true
         collectionView.isHidden = false
         
-        collectionView.reloadData()
         self.searchBar.resignFirstResponder()
+        collectionView.reloadData()
     }
 }
 

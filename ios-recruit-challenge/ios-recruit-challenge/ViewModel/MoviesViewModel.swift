@@ -117,9 +117,13 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
             listOfMovies = moviesSearched
         } else {
           listOfMovies = popularMovies
-        isSearching = false
+            isSearching = false
         }
         
-        delegate?.resultSuccess()
+        if listOfMovies.isEmpty {
+            delegate?.noResultsFound()
+        } else {
+            delegate?.resultSuccess()
+        }
     }
 }

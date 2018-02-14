@@ -34,7 +34,7 @@ class FavoriteViewController: UIViewController {
         self.tabBarController?.title = "Favoritos"
         
         let moviesTab = self.tabBarController?.viewControllers![0] as! MoviesViewController
-        viewModel.inputs.loadFavoriteMovies(moviesTab.viewModel.outputs.popularMovies)
+        viewModel.inputs.loadFavoriteMovies(moviesTab.viewModel.outputs.listOfMovies)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

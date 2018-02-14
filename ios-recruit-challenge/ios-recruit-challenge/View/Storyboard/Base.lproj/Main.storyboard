@@ -236,7 +236,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wA-1T-YTb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar" translatesAutoresizingMaskIntoConstraints="NO" id="yBN-GZ-ydK">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBN-GZ-ydK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="tintColor" red="0.85098039219999999" green="0.59215686270000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="barTintColor" red="0.85098039215686272" green="0.59215686274509804" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
@@ -352,8 +352,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-x1-vrA" userLabel="NoResultsFound">
                                 <rect key="frame" x="0.0" y="50" width="375" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua busca por &quot;{{x}}&quot; não resultou em nenhum resultado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJM-nj-RFd">
-                                        <rect key="frame" x="25" y="290" width="325" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua busca não retornou nenhum resultado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJM-nj-RFd">
+                                        <rect key="frame" x="25" y="290" width="325" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -371,7 +371,6 @@
                                     <constraint firstItem="jJM-nj-RFd" firstAttribute="leading" secondItem="H5Y-x1-vrA" secondAttribute="leading" constant="25" id="EFV-9L-RbY"/>
                                     <constraint firstItem="ugc-LC-0CR" firstAttribute="top" secondItem="H5Y-x1-vrA" secondAttribute="top" constant="90" id="Iq5-IT-9zq"/>
                                     <constraint firstItem="ugc-LC-0CR" firstAttribute="centerX" secondItem="H5Y-x1-vrA" secondAttribute="centerX" id="QXz-Jl-p6e"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jJM-nj-RFd" secondAttribute="bottom" constant="20" id="RW9-sq-wh1"/>
                                     <constraint firstAttribute="trailing" secondItem="jJM-nj-RFd" secondAttribute="trailing" constant="25" id="aXf-kL-xWr"/>
                                     <constraint firstItem="jJM-nj-RFd" firstAttribute="centerX" secondItem="H5Y-x1-vrA" secondAttribute="centerX" id="cto-BC-zl0"/>
                                     <constraint firstItem="jJM-nj-RFd" firstAttribute="top" secondItem="ugc-LC-0CR" secondAttribute="bottom" constant="50" id="lS2-PE-K7j"/>
@@ -1801,6 +1800,6 @@ AQawAAEGuAABBrsAAQbNAAEG0AABBtUAAAAAAAAEAQAAAAAAAABZAAAAAAAAAAAAAAAAAAEG1w
         <image name="search_image" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N9x-vM-tUe"/>
+        <segue reference="hcS-ST-DVt"/>
     </inferredMetricsTieBreakers>
 </document>
