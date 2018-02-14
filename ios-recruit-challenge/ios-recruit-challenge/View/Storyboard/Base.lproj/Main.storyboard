@@ -162,6 +162,9 @@
                                                 <color key="value" red="0.96862745098039216" green="0.80784313725490198" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="mPi-jp-3yw" id="CFx-cf-5EF"/>
+                                        </connections>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.18823529410000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -355,6 +358,7 @@
                         <outlet property="loadMoreSpinner" destination="dT3-tO-Ei2" id="SRX-oI-ugi"/>
                         <outlet property="loadMoreView" destination="s0m-nb-ab4" id="chA-rs-YDw"/>
                         <outlet property="notFoundView" destination="H5Y-x1-vrA" id="Mgw-cp-hv5"/>
+                        <outlet property="searchBar" destination="yBN-GZ-ydK" id="HRw-uY-oPi"/>
                         <outlet property="spinner" destination="8Dl-ki-zJH" id="Ncq-C3-uCM"/>
                         <segue destination="JHL-09-pAv" kind="show" identifier="showMovieDetailsSegue" id="N9x-vM-tUe"/>
                     </connections>

@@ -27,6 +27,7 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadMoreView: UIView!
     @IBOutlet weak var loadMoreSpinner: DRPLoadingSpinner!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel: MoviesViewModelType = MoviesViewModel()
     
@@ -82,18 +83,37 @@ extension MoviesViewController: MoviesDelegate {
         collectionView.isHidden = false
         
         collectionView.reloadData()
+        self.searchBar.resignFirstResponder()
+    }
+}
+
+extension MoviesViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        viewModel.inputs.notSearchingBehavior()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.inputs.searchMovies(text: searchBar.text ?? "")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
+        if trimmedString.isEmpty {
+            viewModel.inputs.notSearchingBehavior()
+        }
     }
 }
 
 extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return viewModel.outputs.popularMovies.count
+       return viewModel.outputs.listOfMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMovieCell", for: indexPath) as? PopularMovieCell
         
-        let movie = viewModel.outputs.popularMovies[indexPath.row]
+        let movie = viewModel.outputs.listOfMovies[indexPath.row]
         let posterPath = movie.posterPath ?? ""
         let url = URL(string: "\(Constants.imageBaseUrl)\(posterPath)")
         
@@ -114,9 +134,9 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let lastItem = (viewModel.outputs.popularMovies.count)-1
+        let lastItem = (viewModel.outputs.listOfMovies.count)-1
         
-        if indexPath.row == lastItem {
+        if indexPath.row == lastItem && !viewModel.outputs.isSearching{
             viewModel.inputs.fetchMorePopularMovies()
         }
     }

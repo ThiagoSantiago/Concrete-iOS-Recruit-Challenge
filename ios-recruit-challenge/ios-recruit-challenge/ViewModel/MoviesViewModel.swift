@@ -11,14 +11,18 @@ import Foundation
 protocol MoviesViewModelInputs {
     func fetchPopularMovies()
     func fetchMorePopularMovies()
+    func searchMovies(text: String)
+    func notSearchingBehavior()
     func movieCellSelected(atIndex: Int)
     func setMoviesDelegate(_ moviesDelegate: MoviesDelegate)
 }
 
 protocol MoviesViewModelOutputs {
-    var popularMovies: [Movie] { get }
+    var isSearching: Bool { get }
     var errorMessage: String { get }
     var movieSelected: Movie { get }
+    var listOfMovies: [Movie] { get }
+    var moviesSearched: [Movie] { get }
 }
 
 protocol MoviesViewModelType {
@@ -32,15 +36,19 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     
     var moviesPage = 1
     var errorMessage = ""
+    var isSearching = false
     var movieSelected = Movie()
     var delegate: MoviesDelegate?
+    var listOfMovies: [Movie] = []
     var popularMovies: [Movie] = []
+    var moviesSearched: [Movie] = []
     
     func fetchPopularMovies() {
         moviesPage = 1
         delegate?.startLoading()
         MovieWorker.getPopularMovies(page: moviesPage, success: { movies in
             self.popularMovies = movies.results ?? []
+            self.listOfMovies = self.popularMovies
             self.delegate?.resultSuccess()
             self.delegate?.finishLoading()
         }) { error in
@@ -54,6 +62,7 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
         delegate?.startLoadingMore()
         MovieWorker.getPopularMovies(page: moviesPage, success: { movies in
             self.popularMovies.append(contentsOf: movies.results ?? [])
+            self.listOfMovies = self.popularMovies
             self.delegate?.resultSuccess()
             self.delegate?.finishLoadingMore()
         }) { error in
@@ -70,5 +79,30 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     
     func setMoviesDelegate(_ moviesDelegate: MoviesDelegate) {
         delegate = moviesDelegate
+    }
+    
+    func notSearchingBehavior() {
+        listOfMovies = popularMovies
+        isSearching = false
+        delegate?.resultSuccess()
+    }
+    
+    func searchMovies(text: String) {
+        let trimmedString = text.trimmingCharacters(in: .whitespaces)
+        if !trimmedString.isEmpty {
+            isSearching = true
+            moviesSearched = []
+            
+            for movie in popularMovies where (movie.title?.contains(trimmedString) ?? false) {
+                moviesSearched.append(movie)
+            }
+            
+            listOfMovies = moviesSearched
+        } else {
+          listOfMovies = popularMovies
+        isSearching = false
+        }
+        
+        delegate?.resultSuccess()
     }
 }
