@@ -41,6 +41,7 @@ class MoviesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.title = "Filmes"
+        self.collectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,12 +114,20 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMovieCell", for: indexPath) as? PopularMovieCell
         
+        viewModel.inputs.verifyIfIsFavorite(index: indexPath.row)
         let movie = viewModel.outputs.listOfMovies[indexPath.row]
+        
         let posterPath = movie.posterPath ?? ""
         let url = URL(string: "\(Constants.imageBaseUrl)\(posterPath)")
         
         cell?.movieTitle.text = movie.title
         cell?.moviePoster.af_setImage(withURL: url!, placeholderImage: UIImage(named: "placeholder"))
+        
+        if viewModel.outputs.isFavorite {
+            cell?.favoriteView.image = UIImage(named: "favorite_full_icon")
+        } else {
+            cell?.favoriteView.image = UIImage(named: "favorite_empty_icon")
+        }
         
         return cell ?? UICollectionViewCell()
     }
