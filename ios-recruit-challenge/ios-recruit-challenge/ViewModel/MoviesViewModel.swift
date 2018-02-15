@@ -46,6 +46,8 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     var popularMovies: [Movie] = []
     var moviesSearched: [Movie] = []
     var isFavorite: Bool = false
+    let favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
+    
     
     func fetchPopularMovies() {
         moviesPage = 1
@@ -65,12 +67,11 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     func verifyIfIsFavorite(index: Int) {
         let favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
         let id = popularMovies[index].id ?? 0
-        for favoriteId in favoriteMovies {
-            if favoriteId == id {
-                isFavorite = true
-            } else {
-                isFavorite = false
-            }
+        
+        if favoriteMovies.contains(id)  {
+            isFavorite = true
+        } else {
+            isFavorite = false
         }
     }
     
