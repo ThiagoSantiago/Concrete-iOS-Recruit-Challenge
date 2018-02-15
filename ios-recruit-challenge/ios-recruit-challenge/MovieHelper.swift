@@ -18,4 +18,12 @@ class MovieHelper {
         spinner.minimumArcLength = 1.0
         spinner.startAnimating()
     }
+    
+    static func convertDate(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: date!)
+    }
 }

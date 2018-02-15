@@ -11,6 +11,7 @@ import Foundation
 protocol MoviesViewModelInputs {
     func fetchPopularMovies()
     func fetchMorePopularMovies()
+    func setContentFor(index: Int)
     func searchMovies(text: String)
     func notSearchingBehavior()
     func verifyIfIsFavorite(index: Int)
@@ -20,6 +21,8 @@ protocol MoviesViewModelInputs {
 
 protocol MoviesViewModelOutputs {
     var isSearching: Bool { get }
+    var movieTitle: String { get }
+    var posterPath: String { get }
     var errorMessage: String { get }
     var movieSelected: Movie { get }
     var listOfMovies: [Movie] { get }
@@ -36,7 +39,8 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     internal var inputs: MoviesViewModelInputs { return self }
     internal var outputs: MoviesViewModelOutputs { return self }
     
-
+    var movieTitle = ""
+    var posterPath = ""
     var moviesPage = 1
     var errorMessage = ""
     var isSearching = false
@@ -87,6 +91,13 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
             self.errorMessage = error.errorMessage
             self.delegate?.hasError()
         }
+    }
+    
+    func setContentFor(index: Int) {
+        let movie = listOfMovies[index]
+        
+        movieTitle = movie.title ?? ""
+        posterPath = movie.posterPath ?? ""
     }
     
     func movieCellSelected(atIndex: Int) {

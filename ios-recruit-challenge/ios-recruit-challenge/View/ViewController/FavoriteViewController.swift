@@ -102,13 +102,13 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteMovieCell", for: indexPath) as? FavoriteMovieCell
         
-        let movie = viewModel.outputs.listOfMovies[indexPath.row]
-        let posterPath = movie.posterPath ?? ""
+        viewModel.inputs.setContentFor(index: indexPath.row)
+        let posterPath = viewModel.outputs.posterPath
         let url = URL(string: "\(Constants.imageBaseUrl)\(posterPath)")
         
-        cell?.movieTitle.text = movie.title
-        cell?.movieReleaseDate.text = movie.releaseDate
-        cell?.movieOverview.text = movie.overview
+        cell?.movieTitle.text = viewModel.outputs.movieTitle
+        cell?.movieReleaseDate.text = viewModel.outputs.dateConverted
+        cell?.movieOverview.text = viewModel.outputs.movieOverview
         cell?.moviePoster.af_setImage(withURL: url!, placeholderImage: UIImage(named: "placeholder"))
         
         return cell ?? UITableViewCell()

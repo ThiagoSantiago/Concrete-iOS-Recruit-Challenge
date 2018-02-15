@@ -123,13 +123,13 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMovieCell", for: indexPath) as? PopularMovieCell
         
+        viewModel.inputs.setContentFor(index: indexPath.row)
         viewModel.inputs.verifyIfIsFavorite(index: indexPath.row)
-        let movie = viewModel.outputs.listOfMovies[indexPath.row]
         
-        let posterPath = movie.posterPath ?? ""
+        let posterPath = viewModel.outputs.posterPath
         let url = URL(string: "\(Constants.imageBaseUrl)\(posterPath)")
         
-        cell?.movieTitle.text = movie.title
+        cell?.movieTitle.text = viewModel.outputs.movieTitle
         cell?.moviePoster.af_setImage(withURL: url!, placeholderImage: UIImage(named: "placeholder"))
         
         if viewModel.outputs.isFavorite {

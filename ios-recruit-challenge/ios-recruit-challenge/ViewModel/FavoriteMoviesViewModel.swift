@@ -13,6 +13,7 @@ protocol FavoriteMoviesViewModelInputs {
     func loadFavoriteMovies(_ movies: [Movie])
     func favoriteCellSelected(atIndex: Int)
     func searchMovies(text: String)
+    func setContentFor(index: Int)
     func notSearchingBehavior()
     func setFavoriteMoviesDelegate(_ favoriteDelegate: FavoriteMovieDelegate)
 }
@@ -78,6 +79,15 @@ class FavoriteMoviesViewModel: FavoriteMoviesViewModelType, FavoriteMoviesViewMo
         if favoriteMovies.count > atIndex {
             favoriteSelected = favoriteMovies[atIndex]
         }
+    }
+    
+    func setContentFor(index: Int) {
+        let movie = listOfMovies[index]
+        
+        movieTitle = movie.title ?? ""
+        dateConverted = MovieHelper.convertDate(movie.releaseDate ?? "")
+        movieOverview = movie.overview ?? ""
+        posterPath = movie.posterPath ?? ""
     }
     
     func searchMovies(text: String) {

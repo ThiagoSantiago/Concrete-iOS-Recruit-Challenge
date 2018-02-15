@@ -101,20 +101,12 @@ class MovieDetailsViewModel: MovieDetailsViewModelType, MovieDetailsViewModelInp
     func setMovieSelected(_ movie: Movie) {
         movieSelected = movie
         movieTitle = movie.title ?? ""
-        dateConverted = convertDate(movie.releaseDate ?? "")
+        dateConverted = MovieHelper.convertDate(movie.releaseDate ?? "")
         movieOverview = movie.overview ?? ""
         posterPath = movie.posterPath ?? ""
     }
     
     func setMovieDetailsDelegate(_ detailsDelegate: MovieDetailsDelegate) {
         delegate = detailsDelegate
-    }
-    
-    func convertDate(_ date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        return dateFormatter.string(from: date!)
     }
 }
