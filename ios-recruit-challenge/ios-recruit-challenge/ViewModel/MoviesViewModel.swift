@@ -46,7 +46,7 @@ final class MoviesViewModel: MoviesViewModelType, MoviesViewModelInputs, MoviesV
     var popularMovies: [Movie] = []
     var moviesSearched: [Movie] = []
     var isFavorite: Bool = false
-    let favoriteMovies: [Int] = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
+    
     
     
     func fetchPopularMovies() {

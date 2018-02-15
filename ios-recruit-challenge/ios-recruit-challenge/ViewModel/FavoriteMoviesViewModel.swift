@@ -12,6 +12,8 @@ import AlamofireImage
 protocol FavoriteMoviesViewModelInputs {
     func loadFavoriteMovies(_ movies: [Movie])
     func favoriteCellSelected(atIndex: Int)
+    func searchMovies(text: String)
+    func notSearchingBehavior()
     func setFavoriteMoviesDelegate(_ favoriteDelegate: FavoriteMovieDelegate)
 }
 
@@ -20,7 +22,7 @@ protocol FavoriteMoviesViewModelOutputs {
     var dateConverted: String { get }
     var movieOverview: String { get }
     var posterPath: String { get }
-    var favoriteMovies: [Movie] { get }
+    var listOfMovies: [Movie] { get }
     var favoriteSelected: Movie { get }
 }
 
@@ -37,13 +39,16 @@ class FavoriteMoviesViewModel: FavoriteMoviesViewModelType, FavoriteMoviesViewMo
     var dateConverted: String = ""
     var movieOverview: String = ""
     var posterPath: String = ""
+    var listOfMovies: [Movie] = []
     var favoriteMovies: [Movie] = []
     var favoriteSelected: Movie = Movie()
     var delegate: FavoriteMovieDelegate?
+    var favoriteMoviesSearched: [Movie] = []
+    
     
     func loadFavoriteMovies(_ movies: [Movie]) {
-        delegate?.startLoading()
         let favoritesIds = UserDefaults.standard.array(forKey: Constants.favoritesKey) as? [Int] ?? []
+        delegate?.startLoading()
         
         favoriteMovies = []
         
@@ -53,8 +58,9 @@ class FavoriteMoviesViewModel: FavoriteMoviesViewModelType, FavoriteMoviesViewMo
             }
         }
         
+        listOfMovies = favoriteMovies
         delegate?.finishLoading()
-        delegate?.reloadTableView()
+        delegate?.resultSuccess()
     }
     
     func setFavoriteMoviesDelegate(_ favoriteDelegate: FavoriteMovieDelegate) {
@@ -72,5 +78,31 @@ class FavoriteMoviesViewModel: FavoriteMoviesViewModelType, FavoriteMoviesViewMo
         if favoriteMovies.count > atIndex {
             favoriteSelected = favoriteMovies[atIndex]
         }
+    }
+    
+    func searchMovies(text: String) {
+        let trimmedString = text.trimmingCharacters(in: .whitespaces)
+        if !trimmedString.isEmpty {
+            favoriteMoviesSearched = []
+    
+            for movie in favoriteMovies where (movie.title?.contains(trimmedString) ?? false) {
+                favoriteMoviesSearched.append(movie)
+            }
+            
+            listOfMovies = favoriteMoviesSearched
+        } else {
+            listOfMovies = favoriteMovies
+        }
+        
+        if listOfMovies.isEmpty {
+            delegate?.noResultFound()
+        } else {
+            delegate?.resultSuccess()
+        }
+    }
+    
+    func notSearchingBehavior() {
+        listOfMovies = favoriteMovies
+        delegate?.resultSuccess()
     }
 }

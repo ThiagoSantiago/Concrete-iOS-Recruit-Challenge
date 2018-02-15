@@ -12,7 +12,8 @@ import DRPLoadingSpinner
 protocol FavoriteMovieDelegate {
     func startLoading()
     func finishLoading()
-    func reloadTableView()
+    func noResultFound()
+    func resultSuccess()
 }
 
 class FavoriteViewController: UIViewController {
@@ -21,6 +22,7 @@ class FavoriteViewController: UIViewController {
     @IBOutlet weak var notFoundView: UIView!
     @IBOutlet weak var spinner: DRPLoadingSpinner!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel: FavoriteMoviesViewModelType = FavoriteMoviesViewModel()
     
@@ -55,21 +57,52 @@ extension FavoriteViewController: FavoriteMovieDelegate {
         spinner.isHidden = true
     }
     
-    func reloadTableView() {
+    func resultSuccess() {
+        errorView.isHidden = true
+        notFoundView.isHidden = true
+        tableView.isHidden = false
+        
+        self.searchBar.resignFirstResponder()
         tableView.reloadData()
+    }
+    
+    func noResultFound() {
+        errorView.isHidden = true
+        notFoundView.isHidden = false
+        tableView.isHidden = true
+        
+        searchBar.resignFirstResponder()
+    }
+}
+
+extension FavoriteViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        viewModel.inputs.notSearchingBehavior()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.inputs.searchMovies(text: searchBar.text ?? "")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
+        if trimmedString.isEmpty {
+            viewModel.inputs.notSearchingBehavior()
+        }
     }
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outputs.favoriteMovies.count
+        return viewModel.outputs.listOfMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteMovieCell", for: indexPath) as? FavoriteMovieCell
         
-        let movie = viewModel.outputs.favoriteMovies[indexPath.row]
+        let movie = viewModel.outputs.listOfMovies[indexPath.row]
         let posterPath = movie.posterPath ?? ""
         let url = URL(string: "\(Constants.imageBaseUrl)\(posterPath)")
         

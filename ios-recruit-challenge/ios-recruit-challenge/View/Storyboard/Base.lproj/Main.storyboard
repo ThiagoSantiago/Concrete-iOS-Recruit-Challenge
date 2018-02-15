@@ -22,7 +22,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyt-7m-jUD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar" translatesAutoresizingMaskIntoConstraints="NO" id="xar-xd-ujJ">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Buscar" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xar-xd-ujJ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="tintColor" red="0.85098039219999999" green="0.59215686270000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="barTintColor" red="0.85098039219999999" green="0.59215686270000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,6 +32,9 @@
                                                 <color key="value" red="0.85098039215686272" green="0.59215686274509804" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="kGi-E8-aSm" id="EHS-zV-SwF"/>
+                                        </connections>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.18823529410000001" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -128,8 +131,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zQ-jM-wRg" userLabel="NoResultsFound">
                                 <rect key="frame" x="0.0" y="50" width="375" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua busca por &quot;{{x}}&quot; não resultou em nenhum resultado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaO-uk-mDh">
-                                        <rect key="frame" x="25" y="290" width="325" height="100.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua busca não retornou nenhum resultado." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaO-uk-mDh">
+                                        <rect key="frame" x="25" y="290" width="325" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -146,7 +149,6 @@
                                 <constraints>
                                     <constraint firstItem="EaO-uk-mDh" firstAttribute="top" secondItem="apt-sv-pA9" secondAttribute="bottom" constant="50" id="VZ6-f2-j3E"/>
                                     <constraint firstItem="apt-sv-pA9" firstAttribute="top" secondItem="6zQ-jM-wRg" secondAttribute="top" constant="90" id="XHZ-Fj-AuK"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EaO-uk-mDh" secondAttribute="bottom" constant="20" id="b4u-30-7Ra"/>
                                     <constraint firstAttribute="trailing" secondItem="EaO-uk-mDh" secondAttribute="trailing" constant="25" id="b7G-As-Bdk"/>
                                     <constraint firstItem="apt-sv-pA9" firstAttribute="centerX" secondItem="6zQ-jM-wRg" secondAttribute="centerX" id="eK7-xI-gp9"/>
                                     <constraint firstItem="EaO-uk-mDh" firstAttribute="centerX" secondItem="6zQ-jM-wRg" secondAttribute="centerX" id="jj8-eO-4xV"/>
@@ -216,6 +218,7 @@
                         <outlet property="errorLabel" destination="Rkb-Yi-tqW" id="8Aa-2a-7iA"/>
                         <outlet property="errorView" destination="3Fo-Lc-CHZ" id="4S4-qY-Riq"/>
                         <outlet property="notFoundView" destination="6zQ-jM-wRg" id="GvE-Ni-fY3"/>
+                        <outlet property="searchBar" destination="xar-xd-ujJ" id="SgK-8D-Ntx"/>
                         <outlet property="spinner" destination="aej-nk-WV5" id="Zp1-rL-TJA"/>
                         <outlet property="tableView" destination="xqh-OQ-AyV" id="vRO-MZ-gWK"/>
                         <segue destination="JHL-09-pAv" kind="show" identifier="showMovieDetailsFromFavoriteSegue" id="hcS-ST-DVt"/>
